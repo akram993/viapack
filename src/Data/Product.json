@@ -1,0 +1,43 @@
+{
+    "products": {
+      "1": {
+        "id": 1,
+        "name": "Premium Wireless Headphones",
+        "category": "Electronics",
+        "price": "$299.99",
+        "stock": 15,
+        "colors": [
+          { "name": "Midnight Black", "code": "#000000" },
+          { "name": "Arctic White", "code": "#FFFFFF" },
+          { "name": "Ocean Blue", "code": "#0ea298" }
+        ],
+        "images": [
+          "C:/Users/073824/Desktop/viapack/src/assets/transpalette1.jpg",
+          "../assets/transpalette2.jpg"
+        ],
+        "thumbnails": [
+        "C:/Users/073824/Desktop/viapack/src/assets/transpalette1.jpg",
+        "../assets/transpalette2.jpg"
+        ],
+        "description": "Experience premium sound quality with our latest wireless headphones. Featuring advanced noise cancellation technology and premium materials for ultimate comfort.",
+        "features": [
+          "40-hour battery life",
+          "Active Noise Cancellation",
+          "Premium leather cushions",
+          "Bluetooth 5.0",
+          "Built-in voice assistant"
+        ],
+        "specifications": {
+          "Driver Size": "40mm",
+          "Frequency Response": "20Hz - 20kHz",
+          "Impedance": "32 Ohm",
+          "Weight": "250g",
+          "Charging Time": "2 hours"
+        },
+        "reviews": {
+          "average": 4.8,
+          "count": 246
+        }
+      }
+    }
+}  

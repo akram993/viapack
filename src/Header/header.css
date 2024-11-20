@@ -1,0 +1,18 @@
+.sticky-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+    transition: box-shadow 0.3s ease;
+}
+
+.sticky-div.with-shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+}
+
+button {
+    color: #0ea298;
+}
