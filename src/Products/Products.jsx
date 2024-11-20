@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Gants1 from "../assets/2071.jpg"
 import Gants2 from "../assets/Gants2.jpg"
-import Transpalette1 from "../assets/Transpalette1.jpg"
-import Transpalette2 from "../assets/Transpalette2.jpg"
+import Transpalette1 from "../assets/transpalette1.jpg"
+import Transpalette2 from "../assets/transpalette2.jpg"
 import Chariot1 from "../assets/Chariot1.jpg"
 import Chariot2 from "../assets/Chariot2.jpg"
 import Cerclage1 from "../assets/Cerclage1.jpg"

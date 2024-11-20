@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, BrowserRouter, Routes, Route } from 'react-router-dom';
-import Transpalette1 from "../assets/Transpalette1.jpg"
-import Transpalette2 from "../assets/Transpalette2.jpg"
+import Transpalette1 from "../assets/transpalette1.jpg"
+import Transpalette2 from "../assets/transpalette2.jpg"
 
 const ProductDetails = () => {
   const { id } = useParams();
