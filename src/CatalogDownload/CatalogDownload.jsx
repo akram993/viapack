@@ -10,7 +10,7 @@ const CatalogDownload = ({ variant = 'button'}) => {
       setIsLoading(true);
       
       // Replace this URL with your actual PDF catalog URL
-      const response = await fetch('public/Data/catalog.pdf');
+      const response = await fetch('/Data/catalog.pdf');
       
       if (!response.ok) {
         throw new Error('Failed to download catalog');
