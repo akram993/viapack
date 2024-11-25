@@ -1,6 +1,7 @@
 import React from 'react';
 import './footer.css';
 import LogoImage from '../assets/LogoImage.png';
+import { Link } from 'react-router-dom';
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
 
 const Footer = () => {
@@ -67,7 +68,7 @@ const Footer = () => {
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Status</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+                <li><Link to="faq" className="hover:text-white transition-colors">FAQ</Link></li>
               </ul>
             </div>
           </div>
