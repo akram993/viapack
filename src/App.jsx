@@ -5,17 +5,20 @@ import Footer from "./Footer/Footer"
 import Header from "./Header/Header"
 import Contact from "./Contact/Contact"
 import About from "./About/About"
+import FAQ from "./FAQ/FAQ"
 import Products from "./Products/Products"
 import ProductDetails from "./ProductDetails/ProductDetails"
 import Services from "./Services/Services"
 import FloatingCatalogDownload from "./CatalogDownload/FloatingCatalogDownload"
 import ScrollToTop from "./ScrollToTop/ScrollToTop"
+import ScrollToTopLinks from "./ScrollToTop/ScrollToTopLinks"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen">
+        <ScrollToTopLinks />
         <Header />
         <Routes>
           <Route path="/" element={
@@ -30,6 +33,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
         <Footer />
         <FloatingCatalogDownload />  
