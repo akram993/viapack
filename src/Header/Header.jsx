@@ -27,7 +27,7 @@ const Header = () => {
     };
   }, []);
 return (
-    <header className="relative min-h-[600px]">
+    <header className="relative min-h-[750px]">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
