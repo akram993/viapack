@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderImage from  '../assets/HeaderImage.jpg';
 import Logo from '../assets/LogoImage.png';
+import HeaderBG from "../assets/HeaderBG.jpeg";
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import './header.css'
@@ -30,16 +31,16 @@ return (
     <header className="relative min-h-[750px]">
       {/* Background Image with Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center z-0"
+        className="absolute inset-x-0 bottom-0 top-0 bg-center z-0"
         style={{
-          backgroundImage: `url(${HeaderImage})`,
+          backgroundImage: `url(${HeaderBG})`,
         }}
       >
-        <div className="absolute inset-0 bg-slate-900/50 z-0"></div>
+        <div className="absolute inset-0 bg-slate-900/70 z-0"></div>
       </div>
 
       {/* Navigation Bar */}
-    <nav className={`sticky-div ${hasScrolled ? 'with-shadow' : ''}`}>
+    <nav className="sticky-div with-shadow">
         <div className="container mx-auto px-4">
     <div className="flex items-center justify-between h-16">
             {/* Logo */}
