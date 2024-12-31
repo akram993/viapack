@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import Gants1 from "../assets/2071.jpg"
 import Gants2 from "../assets/Gants2.jpg"
-import Transpalette1 from "../assets/transpalette1.jpg"
-import Transpalette2 from "../assets/transpalette2.jpg"
-import Chariot1 from "../assets/Chariot1.jpg"
+import Cercleuse6 from "../assets/cercleuse6.webp"
+import Cercleuse4 from "../assets/cercleuse4.webp"
+import Cercleuse8 from "../assets/cercleuse8.png"
 import Chariot2 from "../assets/Chariot2.jpg"
 import Cerclage1 from "../assets/Cerclage1.jpg"
 import Cerclage2 from "../assets/Cerclage2.jpg"
@@ -22,27 +22,27 @@ const Products = () => {
   const products = [
     {
       id: 1,
-      name: "Transpalette",
-      category: "Transpalette",
-      description: "Custom website development with modern technologies",
+      name: "Linder",
+      category: "Cercleuse",
+      description: "Strapping tolos LINDER Survivor LST252/404",
       price: "$999+",
-      image: Transpalette1
+      image: Cercleuse4
     },
     {
       id: 2,
-      name: "Transpalette Lende",
-      category: "Transpalette",
-      description: "Native and cross-platform mobile applications",
+      name: "Orgapack ORT260",
+      category: "Cercleuse",
+      description: "Orgapack ORT260 electric strapping device",
       price: "$1499+",
-      image: Transpalette2
+      image: Cercleuse6
     },
     {
       id: 3,
-      name: "Chariot de Servie Manuel",
-      category: "Chariot",
-      description: "User-centered design solutions",
-      price: "$799+",
-      image: Chariot1
+      name: "GT-SMART",
+      category: "Cercleuse",
+      description: "GT-SMART battery strapping  SIAT",
+      price: "$999+",
+      image: Cercleuse8
     },
     {
       id: 4,
@@ -88,7 +88,7 @@ const Products = () => {
 
   const categories = [
     { id: 'all', name: 'All Products' },
-    { id: 'Transpalette', name: 'Transpalette' },
+    { id: 'Cercleuse', name: 'Cercleuse' },
     { id: 'Chariot', name: 'Chariot' },
     { id: 'Gants', name: 'Gants' },
     { id: 'Cerclage', name: 'Cerclage' }
@@ -180,7 +180,6 @@ const Products = () => {
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
                     <p className="text-gray-600 mb-4">{product.description}</p>
                     <div className="flex justify-between items-center">
-                      <span className="text-[#0ea298] font-bold">{product.price}</span>
                       <button
                         onClick={() => navigate(`/products/${product.id}`)} 
                         className="bg-[#0ea298] text-white px-4 py-2 rounded hover:bg-white hover:text-[#0ea298] transition-colors">

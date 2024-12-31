@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, BrowserRouter, Routes, Route } from 'react-router-dom';
-import Transpalette1 from "../assets/transpalette1.jpg"
-import Transpalette2 from "../assets/transpalette2.jpg"
+import Cercleuse4 from "../assets/cercleuse4.webp"
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -14,8 +14,8 @@ const ProductDetails = () => {
   const products = {
     1: {
       id: 1,
-      name: "Premium Wireless Headphones",
-      category: "Electronics",
+      name: "Strapping tolos LINDER Survivor LST252/404  for plastic strap",
+      category: "Machine Cercleuse",
       price: "$299.99",
       stock: 15,
       colors: [
@@ -24,15 +24,20 @@ const ProductDetails = () => {
         { name: "Ocean Blue", code: "#0ea298" }
       ],
       images: [
-        Transpalette1,
-        Transpalette2
+        Cercleuse4,
+        Cercleuse4
       ],
       thumbnails: [
-        Transpalette1,
-        Transpalette2
+        Cercleuse4,
+        Cercleuse4
       ],
-      description: `Experience premium sound quality with our latest wireless headphones. 
-      Featuring advanced noise cancellation technology and premium materials for ultimate comfort.`,
+      description: `Our innovation on the market - the LST252 and LST404 battery-operated devices from LINDER. 
+      And the LINDER Survivor LST252 / 404 does what it promises. We have found the perfect balance for maximum manoeuvrability. 
+      Due to the ergonomic design, it fits perfectly in the hand and is perfectly balanced with its low weight of only 3.6 kg. 
+      With the BOSCH high-performance lithium-ion battery, it manages up to 600 strapping cycles and only needs 30 minutes to 
+      be fully operational. The extremely durable housing does not give up even in adverse environments. And the included 
+      suitcase keeps everything safe when not in use. Due to the perfect processing of high-quality components, 
+      this device offers and excellent solution for your strapping.`,
       features: [
         "40-hour battery life",
         "Active Noise Cancellation",
@@ -130,7 +135,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 py-[140px]">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
               <div className="flex items-center space-x-4">
@@ -161,31 +166,6 @@ const ProductDetails = () => {
               {product.description}
             </p>
 
-            {/* Color Selection */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Available Colors</h3>
-              <div className="flex space-x-4">
-                {product.colors.map((color) => (
-                  <button
-                    key={color.name}
-                    onClick={() => setSelectedColor(color)}
-                    className={`group relative w-12 h-12 rounded-full flex items-center justify-center ${
-                      selectedColor?.name === color.name ? 'ring-2 ring-[#0ea298]' : ''
-                    }`}
-                  >
-                    <span
-                      className="w-8 h-8 rounded-full"
-                      style={{ backgroundColor: color.code }}
-                    />
-                    <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 
-                      opacity-0 group-hover:opacity-100 text-sm whitespace-nowrap">
-                      {color.name}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Quantity Selection */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Quantity</h3>
@@ -209,47 +189,6 @@ const ProductDetails = () => {
                   {product.stock} items available
                 </span>
               </div>
-            </div>
-
-            {/* Add to Cart Button */}
-            <button 
-              className="w-full bg-[#0ea298] text-white py-3 px-6 rounded-lg hover:bg-[#0c8f86] 
-                transform transition hover:scale-105 flex items-center justify-center space-x-2"
-            >
-              <svg className="w-5 h-5" fill="none" strokeLinecap="round" 
-                strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <span>Add to Cart</span>
-            </button>
-
-            {/* Specifications */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {Object.entries(product.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between">
-                    <span className="text-gray-600">{key}</span>
-                    <span className="font-medium">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Features */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h3>
-              <ul className="grid grid-cols-1 gap-2">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-center space-x-2">
-                    <svg className="w-5 h-5 text-[#0ea298]" fill="none" strokeLinecap="round" 
-                      strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
