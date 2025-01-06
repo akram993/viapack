@@ -20,7 +20,7 @@ const FloatingCatalogDownload = () => {
     try {
       setIsLoading(true);
       
-      const response = await fetch('/Data/catalog.pdf');
+      const response = await fetch('/Data/catalogue.pdf');
       
       if (!response.ok) {
         throw new Error('Download failed');
