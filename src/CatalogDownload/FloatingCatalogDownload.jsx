@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { FileDown, Download } from 'lucide-react';
+import { FileDown, Download, ChevronDown } from 'lucide-react';
 
 const FloatingCatalogDownload = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [notification, setNotification] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const catalogOptions = [
+    { name: 'Catalog Viapack Packaging', path: '/Data/catalogue.pdf', filename: 'Business_Viapack_Packaging.pdf' },
+    { name: 'Catalog Epi Merged', path: '/Data/EPI_merged.pdf', filename: 'Business_Epi_Merged.pdf' }
+  ];
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -16,11 +22,11 @@ const FloatingCatalogDownload = () => {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  const handleDownload = async () => {
+  const handleDownload = async (catalogPath, filename) => {
     try {
       setIsLoading(true);
       
-      const response = await fetch('/Data/catalogue.pdf');
+      const response = await fetch(catalogPath);
       
       if (!response.ok) {
         throw new Error('Download failed');
@@ -30,7 +36,7 @@ const FloatingCatalogDownload = () => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'Business_Catalog_2024.pdf');
+      link.setAttribute('download', filename);
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -47,6 +53,7 @@ const FloatingCatalogDownload = () => {
       });
     } finally {
       setIsLoading(false);
+      setIsDropdownOpen(false);
       setTimeout(() => setNotification(null), 3000);
     }
   };
@@ -57,22 +64,25 @@ const FloatingCatalogDownload = () => {
         <div 
           className="fixed left-0 top-1/2 transform -translate-y-1/2 z-50"
           onMouseEnter={() => setIsExpanded(true)}
-          onMouseLeave={() => setIsExpanded(false)}
+          onMouseLeave={() => {
+            setIsExpanded(false);
+            setIsDropdownOpen(false);
+          }}
         >
           <div 
             className={`relative bg-blue text-black 
-                        rounded-r-lg shadow-lg 
-                        flex items-center 
-                        transition-all duration-300 ease-in-out
-                        ${isExpanded ? 'w-48' : 'w-12'} 
-                        overflow-hidden`}
+                      rounded-r-lg shadow-lg 
+                      flex items-center 
+                      transition-all duration-300 ease-in-out
+                      ${isExpanded ? 'w-48' : 'w-12'} 
+                      overflow-visible`}
           >
             <button 
-              onClick={handleDownload}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               disabled={isLoading}
               className="p-3 flex items-center space-x-2 
-                         disabled:opacity-50 disabled:cursor-not-allowed
-                         w-full"
+                       disabled:opacity-50 disabled:cursor-not-allowed
+                       w-full"
             >
               {isLoading ? (
                 <span className="animate-spin mx-auto">
@@ -82,19 +92,37 @@ const FloatingCatalogDownload = () => {
                 <FileDown className="w-6 h-6 mx-auto" />
               )}
               {isExpanded && (
-                <span className="whitespace-nowrap">Download Catalog</span>
+                <>
+                  <span className="whitespace-nowrap flex-grow">Download Catalog</span>
+                  <ChevronDown className="w-4 h-4" />
+                </>
               )}
             </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && isExpanded && (
+              <div className="absolute left-full ml-2 top-0 w-48 bg-white rounded-md shadow-lg border border-gray-200">
+                {catalogOptions.map((catalog, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleDownload(catalog.path, catalog.filename)}
+                    className="w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-md last:rounded-b-md"
+                  >
+                    {catalog.name}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Notification */}
           {notification && (
             <div 
               className={`absolute top-full mt-2 left-0 
-                          p-2 rounded text-sm 
-                          ${notification.type === 'success' 
-                            ? 'bg-green-500 text-white' 
-                            : 'bg-red-500 text-white'}`}
+                        p-2 rounded text-sm 
+                        ${notification.type === 'success' 
+                          ? 'bg-green-500 text-white' 
+                          : 'bg-red-500 text-white'}`}
             >
               {notification.message}
             </div>

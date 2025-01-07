@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { Download, FileDown, Loader2 } from 'lucide-react';
+import { Download, FileDown, Loader2, ChevronDown } from 'lucide-react';
 
-const CatalogDownload = ({ variant = 'button'}) => {
+const CatalogDownload = ({ variant = 'button' }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [notification, setNotification] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleDownload = async () => {
+  const catalogOptions = [
+    { name: 'Catalog Viapack Packaging', path: '../../Data/Catalogue.pdf', filename: 'Catalog_Viapack_Packaging.pdf' },
+    { name: 'Catalog Epi Merged', path: '../../Data/EPI_merged.pdf', filename: 'Catalog_Epi_Merged.pdf' }
+  ];
+
+  const handleDownload = async (catalogPath, filename) => {
     try {
       setIsLoading(true);
       
-      // Replace this URL with your actual PDF catalog URL
-      const response = await fetch('../../Data/Catalogue.pdf');
+      const response = await fetch(catalogPath);
       
       if (!response.ok) {
         throw new Error('Failed to download catalog');
@@ -20,7 +25,7 @@ const CatalogDownload = ({ variant = 'button'}) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'Catalog_2024.pdf');
+      link.setAttribute('download', filename);
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -39,10 +44,10 @@ const CatalogDownload = ({ variant = 'button'}) => {
       });
     } finally {
       setIsLoading(false);
+      setIsDropdownOpen(false);
     }
   };
 
-  // Notification component
   const Notification = ({ type, message }) => {
     const bgColor = type === 'success' ? 'bg-green-50' : 'bg-red-50';
     const textColor = type === 'success' ? 'text-green-800' : 'text-red-800';
@@ -57,36 +62,68 @@ const CatalogDownload = ({ variant = 'button'}) => {
     );
   };
 
-  // Main download button component
   const DownloadButton = () => (
-    <button
-      onClick={handleDownload}
-      disabled={isLoading}
-      className="bg-[#0ea298] mx-auto hover:bg-[#04776f] text-white px-6 py-3 rounded-lg flex items-center space-x-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-    >
-      {isLoading ? (
-        <Loader2 className="w-5 h-5 animate-spin" />
-      ) : (
-        <Download className="w-5 h-5" />
+    <div className="relative">
+      <button
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        disabled={isLoading}
+        className="bg-[#0ea298] mx-auto hover:bg-[#04776f] text-white px-6 py-3 rounded-lg flex items-center space-x-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {isLoading ? (
+          <Loader2 className="w-5 h-5 animate-spin" />
+        ) : (
+          <Download className="w-5 h-5" />
+        )}
+        <span>Download Product Catalog</span>
+        <ChevronDown className="w-4 h-4" />
+      </button>
+      
+      {isDropdownOpen && (
+        <div className="absolute z-10 mt-2 w-full bg-white rounded-md shadow-lg border border-gray-200">
+          {catalogOptions.map((catalog, index) => (
+            <button
+              key={index}
+              onClick={() => handleDownload(catalog.path, catalog.filename)}
+              className="w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-md last:rounded-b-md"
+            >
+              {catalog.name}
+            </button>
+          ))}
+        </div>
       )}
-      <span>Download Product Catalog</span>
-    </button>
+    </div>
   );
 
-  // Compact link variant
   const DownloadLink = () => (
-    <button
-        onClick={handleDownload}
+    <div className="relative">
+      <button
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         disabled={isLoading}
         className="text-blue-600 hover:text-blue-800 flex items-center space-x-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-    >
-      {isLoading ? (
-        <Loader2 className="w-4 h-4 animate-spin" />
-      ) : (
-        <FileDown className="w-4 h-4" />
+      >
+        {isLoading ? (
+          <Loader2 className="w-4 h-4 animate-spin" />
+        ) : (
+          <FileDown className="w-4 h-4" />
+        )}
+        <span>Download Catalog</span>
+        <ChevronDown className="w-3 h-3" />
+      </button>
+      
+      {isDropdownOpen && (
+        <div className="absolute z-10 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-200">
+          {catalogOptions.map((catalog, index) => (
+            <button
+              key={index}
+              onClick={() => handleDownload(catalog.path, catalog.filename)}
+              className="w-full px-4 py-2 text-left hover:bg-gray-50 first:rounded-t-md last:rounded-b-md"
+            >
+              {catalog.name}
+            </button>
+          ))}
+        </div>
       )}
-      <span>Download Catalog</span>
-    </button>
+    </div>
   );
 
   return (
